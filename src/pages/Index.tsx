@@ -18,6 +18,13 @@ const Index = () => {
     comment: ''
   });
 
+  const scrollToForm = () => {
+    const formSection = document.getElementById('contact-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -170,11 +177,20 @@ const Index = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
-              <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all hover:scale-105">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all hover:scale-105"
+                onClick={scrollToForm}
+              >
                 <Icon name="MessageSquare" size={20} className="mr-2" />
                 Получить консультацию
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 hover:bg-card transition-all hover:scale-105">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8 py-6 border-2 hover:bg-card transition-all hover:scale-105"
+                onClick={scrollToForm}
+              >
                 <Icon name="Play" size={20} className="mr-2" />
                 Смотреть демо
               </Button>
@@ -272,6 +288,7 @@ const Index = () => {
                         ? 'bg-secondary hover:bg-secondary/90' 
                         : 'bg-primary hover:bg-primary/90'
                     }`}
+                    onClick={scrollToForm}
                   >
                     Выбрать пакет
                   </Button>
@@ -334,7 +351,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-4 py-20">
+        <section id="contact-form" className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
             <Card className="border-2 border-primary/30 shadow-2xl shadow-primary/10 animate-scale-in">
               <CardHeader className="text-center">
