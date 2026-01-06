@@ -156,15 +156,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background pointer-events-none" />
-      <div className="absolute top-20 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute top-40 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background pointer-events-none" />
+      <div className="absolute top-20 -left-20 w-72 h-72 bg-muted/30 rounded-full blur-3xl" />
+      <div className="absolute top-40 right-10 w-96 h-96 bg-muted/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-muted/25 rounded-full blur-3xl" />
       
       <div className="relative">
         <section className="container mx-auto px-4 py-20 md:py-32">
           <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
-            <Badge className="mb-4 bg-secondary/10 text-foreground border border-secondary/30 backdrop-blur-sm">
+            <Badge className="mb-4 bg-muted/50 text-foreground border border-muted backdrop-blur-sm">
               <Icon name="Sparkles" size={16} className="mr-2" />
               Эксперт №1 в интеграции AI для бизнеса
             </Badge>
@@ -182,7 +182,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/25"
+                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30"
                 onClick={scrollToForm}
               >
                 <Icon name="MessageSquare" size={20} className="mr-2" />
@@ -191,7 +191,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg px-8 py-6 border-2 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all hover:scale-105 backdrop-blur-sm"
+                className="text-lg px-8 py-6 border-2 border-muted hover:bg-muted/20 hover:border-foreground/30 transition-all hover:scale-105 backdrop-blur-sm"
                 onClick={scrollToForm}
               >
                 <Icon name="Play" size={20} className="mr-2" />
@@ -227,10 +227,10 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {useCases.map((useCase, i) => (
-              <Card key={i} className="border border-primary/20 hover:border-primary/50 transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10" style={{ animationDelay: `${i * 100}ms` }}>
+              <Card key={i} className="border border-border hover:border-muted transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-xl" style={{ animationDelay: `${i * 100}ms` }}>
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center mb-4 shadow-lg">
-                    <Icon name={useCase.icon} size={24} className="text-white" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center mb-4 shadow-lg">
+                    <Icon name={useCase.icon} size={24} className="text-foreground" />
                   </div>
                   <CardTitle className="text-xl">{useCase.title}</CardTitle>
                 </CardHeader>
@@ -258,22 +258,22 @@ const Index = () => {
                 key={i} 
                 className={`relative border transition-all hover:scale-105 animate-scale-in backdrop-blur-sm ${
                   pkg.popular 
-                    ? 'border-secondary/50 bg-gradient-to-b from-secondary/10 to-card/50 shadow-2xl shadow-secondary/20' 
-                    : 'border-primary/20 bg-card/50 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10'
+                    ? 'border-primary/60 bg-gradient-to-b from-primary/5 to-card/50 shadow-2xl shadow-primary/20' 
+                    : 'border-border bg-card/50 hover:border-muted hover:shadow-xl'
                 }`}
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-secondary to-primary text-white px-6 py-1.5 shadow-lg">
+                    <Badge className="bg-primary text-primary-foreground px-6 py-1.5 shadow-lg">
                       Популярный
                     </Badge>
                   </div>
                 )}
                 
                 <CardHeader className="text-center pb-8">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
-                    <Icon name={pkg.icon} size={32} className="text-white" />
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center mb-4 shadow-lg">
+                    <Icon name={pkg.icon} size={32} className="text-foreground" />
                   </div>
                   <CardTitle className="text-2xl mb-2">{pkg.name}</CardTitle>
                   <div className="text-3xl font-bold gradient-text">{pkg.price}</div>
@@ -282,7 +282,7 @@ const Index = () => {
                 <CardContent className="space-y-4">
                   {pkg.features.map((feature, j) => (
                     <div key={j} className="flex items-start gap-3">
-                      <Icon name="CheckCircle2" size={20} className="text-primary mt-0.5 flex-shrink-0" />
+                      <Icon name="CheckCircle2" size={20} className="text-muted-foreground mt-0.5 flex-shrink-0" />
                       <span className="text-sm">{feature}</span>
                     </div>
                   ))}
@@ -290,8 +290,8 @@ const Index = () => {
                   <Button 
                     className={`w-full mt-6 shadow-lg ${
                       pkg.popular 
-                        ? 'bg-gradient-to-r from-secondary to-primary hover:opacity-90 shadow-secondary/25' 
-                        : 'bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-primary/25'
+                        ? 'bg-primary hover:bg-primary/90 shadow-primary/30' 
+                        : 'bg-muted hover:bg-muted/90'
                     }`}
                     onClick={scrollToForm}
                   >
@@ -315,11 +315,11 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, i) => (
-              <Card key={i} className="border border-accent/20 hover:border-accent/50 transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-accent/10" style={{ animationDelay: `${i * 100}ms` }}>
+              <Card key={i} className="border border-border hover:border-muted transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-xl" style={{ animationDelay: `${i * 100}ms` }}>
                 <CardHeader>
                   <div className="flex gap-1 mb-2">
                     {[...Array(testimonial.rating)].map((_, j) => (
-                      <Icon key={j} name="Star" size={16} className="text-accent fill-accent" />
+                      <Icon key={j} name="Star" size={16} className="text-primary fill-primary" />
                     ))}
                   </div>
                   <CardTitle className="text-lg">{testimonial.name}</CardTitle>
@@ -343,7 +343,7 @@ const Index = () => {
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border border-primary/20 rounded-lg px-6 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10">
+                <AccordionItem key={i} value={`item-${i}`} className="border border-border rounded-lg px-6 hover:border-muted transition-colors bg-card/50 backdrop-blur-sm hover:shadow-xl">
                   <AccordionTrigger className="text-left hover:no-underline">
                     <span className="font-semibold">{faq.q}</span>
                   </AccordionTrigger>
@@ -358,7 +358,7 @@ const Index = () => {
 
         <section id="contact-form" className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
-            <Card className="border border-primary/30 shadow-2xl shadow-primary/20 animate-scale-in bg-card/50 backdrop-blur-sm">
+            <Card className="border border-border shadow-2xl animate-scale-in bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
                   Готовы запустить <span className="gradient-text">AI-агента</span>?
@@ -391,7 +391,7 @@ const Index = () => {
                         value={formData.contact}
                         onChange={(e) => setFormData({...formData, contact: e.target.value})}
                         required
-                        className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
+                        className="border border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                       />
                     </div>
                   </div>
@@ -404,7 +404,7 @@ const Index = () => {
                       value={formData.niche}
                       onChange={(e) => setFormData({...formData, niche: e.target.value})}
                       required
-                      className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
+                      className="border border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                     />
                   </div>
 
@@ -416,26 +416,26 @@ const Index = () => {
                       rows={4}
                       value={formData.comment}
                       onChange={(e) => setFormData({...formData, comment: e.target.value})}
-                      className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
+                      className="border border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full text-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/25">
+                  <Button type="submit" size="lg" className="w-full text-lg bg-primary hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
                     <Icon name="Send" size={20} className="mr-2" />
                     Отправить заявку
                   </Button>
 
                   <div className="flex items-center gap-4 pt-4 border-t">
                     <div className="flex items-center gap-2">
-                      <Icon name="Shield" size={20} className="text-primary" />
+                      <Icon name="Shield" size={20} className="text-muted-foreground" />
                       <span className="text-sm text-muted-foreground">30 дней гарантии</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Icon name="Zap" size={20} className="text-secondary" />
+                      <Icon name="Zap" size={20} className="text-muted-foreground" />
                       <span className="text-sm text-muted-foreground">Ответ за 2 часа</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Icon name="Lock" size={20} className="text-accent" />
+                      <Icon name="Lock" size={20} className="text-muted-foreground" />
                       <span className="text-sm text-muted-foreground">Данные защищены</span>
                     </div>
                   </div>
@@ -446,25 +446,25 @@ const Index = () => {
         </section>
 
         <section className="container mx-auto px-4 py-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl blur-3xl" />
+          <div className="absolute inset-0 bg-muted/20 rounded-3xl blur-3xl" />
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <Icon name="Award" size={48} className="mx-auto text-primary" />
+            <Icon name="Award" size={48} className="mx-auto text-muted-foreground" />
             <h3 className="text-3xl font-bold">
               Гарантии и поддержка
             </h3>
             <div className="grid md:grid-cols-3 gap-6 pt-6">
               <div className="space-y-2">
-                <Icon name="Clock" size={32} className="mx-auto text-secondary" />
+                <Icon name="Clock" size={32} className="mx-auto text-muted-foreground" />
                 <h4 className="font-semibold">Быстрое реагирование</h4>
                 <p className="text-sm text-muted-foreground">Отвечаем в течение 2 часов в рабочее время</p>
               </div>
               <div className="space-y-2">
-                <Icon name="RefreshCw" size={32} className="mx-auto text-accent" />
+                <Icon name="RefreshCw" size={32} className="mx-auto text-muted-foreground" />
                 <h4 className="font-semibold">Бесплатные доработки</h4>
                 <p className="text-sm text-muted-foreground">30 дней корректировок и улучшений</p>
               </div>
               <div className="space-y-2">
-                <Icon name="HeartHandshake" size={32} className="mx-auto text-primary" />
+                <Icon name="HeartHandshake" size={32} className="mx-auto text-muted-foreground" />
                 <h4 className="font-semibold">Честная работа</h4>
                 <p className="text-sm text-muted-foreground">Не устроит — вернём деньги</p>
               </div>
@@ -478,13 +478,13 @@ const Index = () => {
               © 2025 AI-агенты под ключ. Автоматизация бизнес-процессов для малого и среднего бизнеса.
             </p>
             <div className="flex justify-center gap-6">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Send" size={24} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Mail" size={24} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Phone" size={24} />
               </a>
             </div>
