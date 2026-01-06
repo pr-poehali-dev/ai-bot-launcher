@@ -155,13 +155,16 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none" />
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background pointer-events-none" />
+      <div className="absolute top-20 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute top-40 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       
       <div className="relative">
         <section className="container mx-auto px-4 py-20 md:py-32">
           <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
-            <Badge className="mb-4 bg-secondary/20 text-secondary-foreground border-secondary/50">
+            <Badge className="mb-4 bg-secondary/10 text-foreground border border-secondary/30 backdrop-blur-sm">
               <Icon name="Sparkles" size={16} className="mr-2" />
               Эксперт №1 в интеграции AI для бизнеса
             </Badge>
@@ -179,7 +182,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all hover:scale-105"
+                className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/25"
                 onClick={scrollToForm}
               >
                 <Icon name="MessageSquare" size={20} className="mr-2" />
@@ -188,7 +191,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg px-8 py-6 border-2 hover:bg-card transition-all hover:scale-105"
+                className="text-lg px-8 py-6 border-2 border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all hover:scale-105 backdrop-blur-sm"
                 onClick={scrollToForm}
               >
                 <Icon name="Play" size={20} className="mr-2" />
@@ -224,9 +227,9 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {useCases.map((useCase, i) => (
-              <Card key={i} className="border-2 hover:border-primary/50 transition-all hover:scale-105 animate-scale-in" style={{ animationDelay: `${i * 100}ms` }}>
+              <Card key={i} className="border border-primary/20 hover:border-primary/50 transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10" style={{ animationDelay: `${i * 100}ms` }}>
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center mb-4 shadow-lg">
                     <Icon name={useCase.icon} size={24} className="text-white" />
                   </div>
                   <CardTitle className="text-xl">{useCase.title}</CardTitle>
@@ -253,21 +256,23 @@ const Index = () => {
             {packages.map((pkg, i) => (
               <Card 
                 key={i} 
-                className={`relative border-2 transition-all hover:scale-105 animate-scale-in ${
-                  pkg.popular ? 'border-secondary shadow-2xl shadow-secondary/20' : 'hover:border-primary/50'
+                className={`relative border transition-all hover:scale-105 animate-scale-in backdrop-blur-sm ${
+                  pkg.popular 
+                    ? 'border-secondary/50 bg-gradient-to-b from-secondary/10 to-card/50 shadow-2xl shadow-secondary/20' 
+                    : 'border-primary/20 bg-card/50 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10'
                 }`}
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-secondary text-secondary-foreground px-4 py-1">
+                    <Badge className="bg-gradient-to-r from-secondary to-primary text-white px-6 py-1.5 shadow-lg">
                       Популярный
                     </Badge>
                   </div>
                 )}
                 
                 <CardHeader className="text-center pb-8">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
                     <Icon name={pkg.icon} size={32} className="text-white" />
                   </div>
                   <CardTitle className="text-2xl mb-2">{pkg.name}</CardTitle>
@@ -283,10 +288,10 @@ const Index = () => {
                   ))}
                   
                   <Button 
-                    className={`w-full mt-6 ${
+                    className={`w-full mt-6 shadow-lg ${
                       pkg.popular 
-                        ? 'bg-secondary hover:bg-secondary/90' 
-                        : 'bg-primary hover:bg-primary/90'
+                        ? 'bg-gradient-to-r from-secondary to-primary hover:opacity-90 shadow-secondary/25' 
+                        : 'bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-primary/25'
                     }`}
                     onClick={scrollToForm}
                   >
@@ -310,7 +315,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, i) => (
-              <Card key={i} className="border-2 hover:border-accent/50 transition-all hover:scale-105 animate-scale-in" style={{ animationDelay: `${i * 100}ms` }}>
+              <Card key={i} className="border border-accent/20 hover:border-accent/50 transition-all hover:scale-105 animate-scale-in bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-accent/10" style={{ animationDelay: `${i * 100}ms` }}>
                 <CardHeader>
                   <div className="flex gap-1 mb-2">
                     {[...Array(testimonial.rating)].map((_, j) => (
@@ -338,7 +343,7 @@ const Index = () => {
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border-2 border-border rounded-lg px-6 hover:border-primary/50 transition-colors">
+                <AccordionItem key={i} value={`item-${i}`} className="border border-primary/20 rounded-lg px-6 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10">
                   <AccordionTrigger className="text-left hover:no-underline">
                     <span className="font-semibold">{faq.q}</span>
                   </AccordionTrigger>
@@ -353,7 +358,7 @@ const Index = () => {
 
         <section id="contact-form" className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-2 border-primary/30 shadow-2xl shadow-primary/10 animate-scale-in">
+            <Card className="border border-primary/30 shadow-2xl shadow-primary/20 animate-scale-in bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
                   Готовы запустить <span className="gradient-text">AI-агента</span>?
@@ -374,7 +379,7 @@ const Index = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         required
-                        className="border-2"
+                        className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
                       />
                     </div>
                     
@@ -386,7 +391,7 @@ const Index = () => {
                         value={formData.contact}
                         onChange={(e) => setFormData({...formData, contact: e.target.value})}
                         required
-                        className="border-2"
+                        className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
                       />
                     </div>
                   </div>
@@ -399,7 +404,7 @@ const Index = () => {
                       value={formData.niche}
                       onChange={(e) => setFormData({...formData, niche: e.target.value})}
                       required
-                      className="border-2"
+                      className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
                     />
                   </div>
 
@@ -411,11 +416,11 @@ const Index = () => {
                       rows={4}
                       value={formData.comment}
                       onChange={(e) => setFormData({...formData, comment: e.target.value})}
-                      className="border-2"
+                      className="border border-primary/30 bg-background/50 focus:border-primary focus:ring-primary/20"
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full text-lg bg-primary hover:bg-primary/90 transition-all hover:scale-105">
+                  <Button type="submit" size="lg" className="w-full text-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/25">
                     <Icon name="Send" size={20} className="mr-2" />
                     Отправить заявку
                   </Button>
@@ -440,7 +445,8 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-4 py-16 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20">
+        <section className="container mx-auto px-4 py-16 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl blur-3xl" />
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
             <Icon name="Award" size={48} className="mx-auto text-primary" />
             <h3 className="text-3xl font-bold">
